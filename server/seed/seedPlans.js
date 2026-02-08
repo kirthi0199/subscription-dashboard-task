@@ -5,7 +5,7 @@ const seedPlans = async () => {
     const count = await Plan.countDocuments();
 
     if (count > 0) {
-      console.log("✅ Plans already exist — skipping seed.");
+      // console.log("✅ Plans already exist — skipping seed.");
       return;
     }
 
@@ -29,7 +29,7 @@ const seedPlans = async () => {
     ];
 
     await Plan.insertMany(plans);
-    console.log("🌱 Plans seeded successfully!");
+    console.log("Plans seeded successfully!");
   } catch (err) {
     console.error("❌ Seeding error:", err);
   }
