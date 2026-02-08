@@ -1,65 +1,103 @@
-import { useState, useContext } from "react";
+import { useContext } from "react";
 import api from "../api/axios";
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../ThemeContext";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export default function Register() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-    role: "user"
-  });
-
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
 
-  const handleRegister = async () => {
-    try {
-      await api.post("/auth/register", form);
-      alert("Registered successfully! Now login.");
-      navigate("/login");
-    } catch {
-      alert("Email already exists or error occurred");
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+      role: "user"
+    },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .min(3, "Name must be at least 3 characters")
+        .required("Name is required"),
+      email: Yup.string()
+        .email("Invalid email")
+        .required("Email is required"),
+      password: Yup.string()
+        .min(6, "Password must be at least 6 characters")
+        .required("Password is required"),
+      role: Yup.string().required("Role is required")
+    }),
+    onSubmit: async (values) => {
+      try {
+        await api.post("/auth/register", values);
+        alert("Registered successfully!");
+        navigate("/login");
+      } catch (err) {
+        alert(err.response?.data?.message || "Registration failed");
+      }
     }
-  };
+  });
 
   return (
     <div className="container d-flex justify-content-center mt-5">
       <div className={`card p-4 shadow ${theme === "dark" ? "bg-dark text-white" : ""}`} style={{ width: "450px" }}>
         <h3 className="text-center mb-3">Register</h3>
 
-        <input
-          className="form-control mb-2"
-          placeholder="Name"
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-        />
+        <form onSubmit={formik.handleSubmit}>
 
-        <input
-          className="form-control mb-2"
-          placeholder="Email"
-          onChange={(e) => setForm({ ...form, email: e.target.value })}
-        />
+          <input
+            className="form-control mb-2"
+            name="name"
+            placeholder="Name"
+            onChange={formik.handleChange}
+            value={formik.values.name}
+          />
+          {formik.touched.name && formik.errors.name && (
+            <div className="text-danger mb-2">{formik.errors.name}</div>
+          )}
 
-        <input
-          className="form-control mb-3"
-          type="password"
-          placeholder="Password"
-          onChange={(e) => setForm({ ...form, password: e.target.value })}
-        />
+          <input
+            className="form-control mb-2"
+            name="email"
+            placeholder="Email"
+            onChange={formik.handleChange}
+            value={formik.values.email}
+          />
+          {formik.touched.email && formik.errors.email && (
+            <div className="text-danger mb-2">{formik.errors.email}</div>
+          )}
 
-        {/* 👉 ROLE DROPDOWN */}
-        <select
-          className="form-control mb-3"
-          value={form.role}
-          onChange={(e) => setForm({ ...form, role: e.target.value })}
-        >
-          <option value="user">User</option>
-          <option value="admin">Admin</option>
-        </select>
+          <input
+            className="form-control mb-3"
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={formik.handleChange}
+            value={formik.values.password}
+          />
+          {formik.touched.password && formik.errors.password && (
+            <div className="text-danger mb-2">{formik.errors.password}</div>
+          )}
 
-        <button className="btn btn-primary w-100" onClick={handleRegister}>
-          Register
+          <select
+            className="form-control mb-3"
+            name="role"
+            onChange={formik.handleChange}
+            value={formik.values.role}
+          >
+            <option value="user">User</option>
+            <option value="admin">Admin</option>
+          </select>
+
+          <button type="submit" className="btn btn-success w-100">
+            Register
+          </button>
+
+        </form>
+
+        <button className="btn btn-link mt-2" onClick={() => navigate("/login")}>
+          Already have an account? Login
         </button>
       </div>
     </div>
