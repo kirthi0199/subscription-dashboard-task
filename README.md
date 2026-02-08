@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Subscription Dashboard Task
 
 ## Author
@@ -15,3 +16,6 @@
 ---
 
 ## Project Structure
+=======
+# subscription-dashboard-task
+>>>>>>> 628d50748d52fe8ab61b0110b157b1f15befe224

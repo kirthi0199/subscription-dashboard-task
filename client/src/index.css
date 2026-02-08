@@ -126,10 +126,6 @@ body.light .already-btn:focus {
   text-decoration: none;
   outline: none;
 }
-
-
-
-
  /* ///////////////// */
 
 
@@ -197,8 +193,6 @@ body.dark .admin-sub-card {
 
 
 /* ===== FLOATING VIEW PLANS BUTTON ===== */
-/* ===== FLOATING ROUND BUTTON ===== */
-/* ===== FLOATING ROUND BUTTON (PERFECT CENTER TEXT) ===== */
 .view-plans-float {
   position: fixed;
   right: 20px;
