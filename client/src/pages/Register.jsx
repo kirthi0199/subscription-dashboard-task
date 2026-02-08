@@ -89,14 +89,24 @@ export default function Register() {
             <option value="user">User</option>
             <option value="admin">Admin</option>
           </select>
+<div className="d-flex justify-content-center">
+  <button 
+    type="submit" 
+    className="btn btn-success mb-2"
+    style={{
+      width: "auto",
+      padding: "10px 30px",
+      borderRadius: "50px"
+    }}
+  >
+    Register
+  </button>
+</div>
 
-          <button type="submit" className="btn btn-success w-100">
-            Register
-          </button>
 
         </form>
 
-        <button className="btn btn-link mt-2" onClick={() => navigate("/login")}>
+        <button className="btn btn-link already-btn mt-2" onClick={() => navigate("/login")}>
           Already have an account? Login
         </button>
       </div>

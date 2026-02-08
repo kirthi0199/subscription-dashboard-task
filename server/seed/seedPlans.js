@@ -24,7 +24,8 @@ const seedPlans = async () => {
         name: "Premium",
         price: 999,
         duration: 180
-      }
+      },
+     
     ];
 
     await Plan.insertMany(plans);

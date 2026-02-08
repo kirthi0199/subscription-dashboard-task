@@ -37,13 +37,15 @@ if (!user) {
    
 
 
-<h2 className="mb-3">
+<h2 className={`mb-3 text-center ${theme === "dark" ? "text-white" : "text-dark"}`}>
   {user?.role === "admin" ? "Admin Dashboard" : "My Dashboard"}
 </h2>
 
-<Link className="btn btn-success mb-3" to="/plans">
-  View Plans / Subscribe
+<Link className="view-plans-float" to="/plans">
+  View<br/>Plans
 </Link>
+
+
 
 
       {/* ================= USER VIEW ================= */}
@@ -74,19 +76,19 @@ if (!user) {
         <div className="row">
           {allSubs.map(s => (
             <div className="col-md-4 mb-3" key={s._id}>
-              <div className={`card p-3 ${theme === "dark" ? "bg-dark text-white" : ""}`}>
+             <div className={`card p-3 admin-sub-card ${theme === "dark" ? "bg-dark text-white" : ""}`}>
+
                 <h5 className="mb-2">👤 User Details</h5>
                 <p><b>Name:</b> {s.user_id.name}</p>
                 <p><b>Email:</b> {s.user_id.email}</p>
 
-                <hr />
 
                 <h5 className="mb-2">📦 Plan Details</h5>
                 <p><b>Plan:</b> {s.plan_id.name}</p>
                 <p><b>Price:</b> ₹ {s.plan_id.price}</p>
                 <p><b>Duration:</b> {s.plan_id.duration} days</p>
 
-                <hr />
+             
 
                 <h5 className="mb-2">📅 Subscription</h5>
                 <p><b>Status:</b> {s.status}</p>

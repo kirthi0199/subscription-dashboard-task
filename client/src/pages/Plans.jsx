@@ -24,17 +24,27 @@ export default function Plans() {
   };
 
   return (
-    <div className="container mt-4">
-      <div className="d-flex flex-wrap justify-content-center gap-4">
+    <div className="container mt-5 mb-5">
+
+      {/* ====== HEADING ADDED ====== */}
+      <h2 className={`mb-3 text-center ${theme === "dark" ? "text-white" : "text-dark"}`}>
+        Choose Your Subscription Plan
+      </h2>
+      <p className={`mb-3 text-center ${theme === "dark" ? "text-white" : "text-dark"}`}>
+        Select a plan that best suits your needs
+      </p>
+
+      <div className="d-flex flex-wrap justify-content-center gap-4 mt-3">
         {plans.map((p, i) => (
           <Fade key={p._id} direction="up" duration={300}>
             <div className="plan-wrapper">
+
               <div
-                className={`card p-4 plan-card position-relative ${
+                className={`card p-3 plan-card position-relative ${
                   theme === "dark" ? "bg-dark text-white" : ""
                 }`}
               >
-              
+
                 <h4 className="text-center">{p.name}</h4>
                 <hr />
 
@@ -42,19 +52,25 @@ export default function Plans() {
                 <p className="text-center text-muted">
                   Valid for {p.duration} days
                 </p>
-
+ 
                 <ul>
-                  <li>Unlimited Access</li>
-                  <li>24/7 Support</li>
-                  <li>Cancel Anytime</li>
-                </ul>
+                 <ul>
+  <li>Unlimited access to all features</li>
+  <li>24/7 customer support available</li>
+  <li>Fast and secure service usage</li>
+  <li>Cancel subscription anytime easily</li>
+</ul>
 
-                <button
-                  className="btn btn-success w-100 mt-3"
-                  onClick={() => handleSubscribe(p._id)}
-                >
-                  Subscribe
-                </button>
+                </ul>
+              
+<button
+  className="btn btn-success w-100 mt-3 rounded-pill"
+  onClick={() => handleSubscribe(p._id)}
+>
+  Subscribe
+</button>
+
+
               </div>
             </div>
           </Fade>

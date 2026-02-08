@@ -1,95 +1,240 @@
 /* ====== GLOBAL THEME FIX ====== */
 html, body, #root {
   min-height: 100vh;
+  width: 100%;
   margin: 0;
   transition: background-color 0.3s ease, color 0.3s ease;
 
-  
-}
+font-family: 'Times New Roman', Times, serif;}
 
 /* ========== LIGHT MODE ========== */
 body.light {
   background-color: #ffffff;
- 
 }
 
 /* ========== DARK MODE ========== */
-body.dark {
-  background-color: #121212;
 
-
-}
 
 /* Make React root follow body */
 body.dark #root {
-  background-color: #121212;
-}
-
-/* Dark mode cards */
-.dark .card {
-  background-color: #1e1e1e;
-  color: white;
+  background: linear-gradient(0deg, #05070a, #160f0f);
 }
 
 /* Dark navbar */
 .dark .navbar {
   background-color: #000 !important;
 }
-body.dark, body.dark #root {
-  background: linear-gradient(180deg, #0b0f14, #121212);
-}
+
 /* Buttons in dark mode */
 .dark button {
   border: 1px solid white;
 }
 
-/* ====== PLAN CARD DESIGN ====== */
-.plan-wrapper {
-  width: 300px;
-}
-
-.plan-card {
-  border-radius: 12px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  box-shadow: 0 8px 20px rgba(10, 9, 9, 0.15);
-}
-
-.plan-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.25);
-}
-/* ///////////////// */
-
-/* ===== LOGIN PAGE BACKGROUND ===== */
-
-.login-page {
+/* ======== FULL SCREEN AUTH PAGE (CENTER + BG FIX) ======== */
+.auth-page {
   min-height: 100vh;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  width: 100%;
   display: flex;
-  align-items: center;
-  justify-content: center;
+  align-items: center;      /* vertical center */
+  justify-content: center;  /* horizontal center */
+
+  background-size: cover;      /* full screen cover */
+  background-position: center; /* center image */
+  background-repeat: no-repeat; /* NO repeat */
 }
 
-/* Light mode image */
-body.light .login-page {
+/* ============ BACKGROUND IMAGES ============ */
+
+/* Light mode images */
+body.light .login-page,
+body.light .register-page {
   background-image: url("../src/assets/light.jpg");
 }
 
-/* Dark mode image */
-body.dark .login-page {
+/* Dark mode images */
+body.dark .login-page,
+body.dark .register-page {
   background-image: url("../src/assets/dark.jpg");
 }
 
-/* Make login card slightly transparent (looks nice) */
-.login-card {
-  backdrop-filter: blur(6px);
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 12px;
+/* ============ GLASS CARD STYLE ============ */
+
+/* ----- LIGHT MODE CARD (black frosted glass) ----- */
+.login-card,
+.register-card {
+  width: 420px;
+  padding: 24px;
+  border-radius: 16px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  background: rgba(255, 255, 255, 0.7); /* light frosted */
+  color: black;
+  border: 1px solid rgba(0, 0, 0, 0.5); /* black border */
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
 
-/* Dark card override */
-body.dark .login-card {
-  background: rgba(30, 30, 30, 0.95);
+/* ----- DARK MODE CARD (white glass like your image) ----- */
+body.dark .login-card,
+body.dark .register-card {
+  background: rgba(0, 0, 0, 0.6);  /* dark glass */
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.6); /* white border */
+  box-shadow: 0 10px 40px rgba(255, 255, 255, 0.1);
+}
+
+/* Inputs in light mode */
+body.light .login-card input,
+body.light .register-card input,
+body.light .register-card select {
+  background: rgba(255, 255, 255, 0.9);
+  color: black;
+  border: 1px solid black;
+}
+
+/* Inputs in dark mode */
+body.dark .login-card input,
+body.dark .register-card input,
+body.dark .register-card select {
+  background: rgba(30, 30, 30, 0.9);
+  color: white;
+  border: 1px solid white;
+}
+body.dark .already-btn {
+  color: white;
+  text-decoration: none !important; /* removes underline */
+  border: none;                     /* removes border */
+  outline: none;                    /* removes focus outline */
+  background: transparent;         /* optional if it's link-styled */
+}
+body.dark .already-btn:hover,
+body.dark .already-btn:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+body.light .already-btn {
+  color: rgb(11, 9, 9);
+  text-decoration: none !important; /* removes underline */
+  border: none;                     /* removes border */
+  outline: none;                    /* removes focus outline */
+  background: transparent;         /* optional if it's link-styled */
+}
+body.light .already-btn:hover,
+body.light .already-btn:focus {
+  text-decoration: none;
+  outline: none;
+}
+
+
+
+
+ /* ///////////////// */
+
+
+
+ .oval-btn- {
+  width: auto;
+  padding: 10px 30px;
+  border-radius: 90px;
+}
+
+
+/* ///////////////// */
+
+/* ====== LIGHT MODE ====== */
+body.light .theme-btn,
+body.light .auth-btn {
+  border: 2px solid black !important;
+  color: black !important;
+}
+
+/* Hover in light mode */
+body.light .theme-btn:hover,
+body.light .auth-btn:hover {
+  border-color: grey !important;
+  color: grey !important;
+}
+
+/* ====== DARK MODE ====== */
+body.dark .theme-btn,
+body.dark .auth-btn {
+  border: 2px solid white !important;
+  color: white !important;
+}
+
+/* Hover in dark mode */
+/* body.dark .theme-btn:hover,
+body.dark .auth-btn:hover {
+  border-color: lightgrey !important;
+  color: lightgrey !important;
+} */
+/* 
+//////////////////////////////////// */
+
+/* ===== ADMIN DASHBOARD CARD STYLE ===== */
+
+/* Default (Light mode) */
+.admin-sub-card {
+  border: 2px solid #000 !important;   /* black border */
+  width: 100%;                         /* increase width */
+  max-width: 380px;                    /* bigger card */
+}
+
+/* Dark mode */
+body.dark .admin-sub-card {
+  border: 2px solid #ffffff !important; /* white border */
+}
+
+/* Optional: better shadow */
+.admin-sub-card {
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+body.dark .admin-sub-card {
+  box-shadow: 0 6px 18px rgba(255, 255, 255, 0.15);
+}
+
+
+/* ===== FLOATING VIEW PLANS BUTTON ===== */
+/* ===== FLOATING ROUND BUTTON ===== */
+/* ===== FLOATING ROUND BUTTON (PERFECT CENTER TEXT) ===== */
+.view-plans-float {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  width: 80px;
+  height: 80px;
+  border-radius: 50%; /* perfect circle */
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+
+  background: #de9312; /* green */
+  color: rgb(10, 10, 10);
+  font-weight: 600;
+  text-decoration: none;
+  font-size: 14px;
+
+  box-shadow: 0 0 15px #f0a10d, 0 0 30px #f0a10d, 0 0 45px #f0a10d; /* glowing effect */
+  z-index: 999;
+  transition: all 0.3s ease;
+}
+
+/* Hover animation */
+.view-plans-float:hover {
+  background: #b7860b;
+  transform: translateY(-50%) scale(1.08);
+   box-shadow: 0 0 15px #f0a10d, 0 0 30px #f0a10d, 0 0 45px #f0a10d; /* glowing effect */
+}
+
+/* Dark mode with bright orange glow */
+body.dark .view-plans-float {
+  background: #f0a10d; /* orange */
+  color: black;
+  box-shadow: 0 0 15px #f0a10d, 0 0 30px #f0a10d, 0 0 45px #f0a10d; /* glowing effect */
 }

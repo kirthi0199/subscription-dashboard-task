@@ -29,12 +29,10 @@ export default function Login() {
       try {
         const res = await api.post("/auth/login", values);
 
-        dispatch(
-          setAuth({
-            token: res.data.token,
-            user: res.data.user
-          })
-        );
+        dispatch(setAuth({
+          token: res.data.token,
+          user: res.data.user
+        }));
 
         localStorage.setItem("token", res.data.token);
         localStorage.setItem("user", JSON.stringify(res.data.user));
@@ -47,16 +45,12 @@ export default function Login() {
   });
 
   return (
-    <div className="login-page">
-      <div
-        className={`card p-4 shadow login-card ${
-          theme === "dark" ? "bg-dark text-white" : ""
-        }`}
-        style={{ width: "400px" }}
-      >
+    <div className="container d-flex justify-content-center mt-5">
+      <div className={`card p-4 shadow ${theme === "dark" ? "bg-dark text-white" : ""}`} style={{ width: "400px" }}>
         <h3 className="text-center mb-3">Login</h3>
 
         <form onSubmit={formik.handleSubmit}>
+
           <input
             className="form-control mb-2"
             name="email"
@@ -65,9 +59,7 @@ export default function Login() {
             value={formik.values.email}
           />
           {formik.touched.email && formik.errors.email && (
-            <div className="text-danger mb-2">
-              {formik.errors.email}
-            </div>
+            <div className="text-danger mb-2">{formik.errors.email}</div>
           )}
 
           <input
@@ -79,15 +71,28 @@ export default function Login() {
             value={formik.values.password}
           />
           {formik.touched.password && formik.errors.password && (
-            <div className="text-danger mb-2">
-              {formik.errors.password}
-            </div>
+            <div className="text-danger mb-2">{formik.errors.password}</div>
           )}
+<div className="d-flex justify-content-center">
+  <button 
+    type="submit" 
+    className="btn btn-primary mb-2"
+    style={{
+      width: "auto",
+      padding: "10px 30px",
+      borderRadius: "50px"
+    }}
+  >
+    Login
+  </button>
+</div>
 
-          <button type="submit" className="btn btn-primary w-100 mb-2">
-            Login
-          </button>
+
         </form>
+
+        {/* <button className="btn btn-success w-100" onClick={() => navigate("/register")}>
+          Register
+        </button> */}
       </div>
     </div>
   );
