@@ -28,4 +28,10 @@
 >> node server.js
 
 
+# user Login
+username: user1@gmail.com
+password: 123456789
 
+# Admin login
+username: admin@gmail.com
+password: 123456789
