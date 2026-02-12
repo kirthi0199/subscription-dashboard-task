@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const api = axios.create({
-  baseURL: "http://localhost:5000/api",   // <-- CRITICAL
+  baseURL: "http://subscription-dashboard-task-gk6i.vercel.app/api",   // <-- CRITICAL
 });
 
 api.interceptors.request.use(config => {
