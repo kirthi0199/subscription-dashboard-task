@@ -7,7 +7,6 @@ export default function Dashboard() {
   const { theme } = useContext(ThemeContext);
   const user = useSelector(state => state.auth.user);
 
-  const [mySub, setMySub] = useState(null);
   const [allSubs, setAllSubs] = useState([]);
 
 const [mySubs, setMySubs] = useState([]); // <-- change state name
